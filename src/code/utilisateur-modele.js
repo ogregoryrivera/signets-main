@@ -21,6 +21,6 @@ export function observerEtatConnexion(mutateurUtilisateur) {
             }, {merge: true});
         }
         mutateurUtilisateur(u);
-        console.log("Utilisateur retourné par Auth : ", u);
+        
     })
 }

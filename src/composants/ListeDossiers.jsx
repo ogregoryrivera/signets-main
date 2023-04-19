@@ -1,11 +1,11 @@
 import './ListeDossiers.scss';
 import Dossier from './Dossier';
-import { initializeApp } from 'firebase/app';
-import { collection, getDocs, getFirestore, onSnapshot } from 'firebase/firestore'; 
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { lireTout, modifier, supprimer } from '../code/dossier-modele';
+import { UtilisateurContext } from './Appli';
 
-export default function ListeDossiers({dossiers, setDossiers, utilisateur}) {
+export default function ListeDossiers({dossiers, setDossiers}) {
+  const utilisateur = useContext(UtilisateurContext);
 
   useEffect(()=> {
     async function chercherDossiers() {

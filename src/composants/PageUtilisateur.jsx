@@ -4,10 +4,14 @@ import ListeDossiers from './ListeDossiers';
 import FrmDossier from './FrmDossier';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { creer } from '../code/dossier-modele';
+import { UtilisateurContext } from './Appli';
 
-export default function PageUtilisateur({utilisateur}) {
+export default function PageUtilisateur() {
+  //Récuperer l'utilisateur connecté du contexte...
+  const utilisateur = useContext(UtilisateurContext);
+
   const [frmDossierOuvert, setFrmDossierOuvert] = useState(false);
 
   // État des dossiers de l'utilisateur
@@ -29,10 +33,12 @@ export default function PageUtilisateur({utilisateur}) {
   }
 
   return (
-    <div className="PageUtilisateur">
-        <Entete utilisateur={utilisateur} />
+    <div 
+      className="PageUtilisateur" 
+    >
+        <Entete />
         <section className="contenu-principal">
-          <ListeDossiers utilisateur={utilisateur} dossiers={dossiers} setDossiers={setDossiers} />
+          <ListeDossiers dossiers={dossiers} setDossiers={setDossiers} />
           
           <FrmDossier ouvert={frmDossierOuvert} setOuvert={setFrmDossierOuvert} actionDossier={ajouterDossier}/>
           
